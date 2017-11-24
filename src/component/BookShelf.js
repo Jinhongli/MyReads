@@ -4,9 +4,18 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 
 const shelfType = {
-  1: 'Currently Reading',
-  2: 'Want to Read',
-  3: 'Read',
+  1: {
+    title: 'Currently Reading',
+    color: '#00d1b2',
+  },
+  2: {
+    title: 'Want to Read',
+    color: '#00d1b2',
+  },
+  3: {
+    title: 'Read',
+    color: '#23d160',
+  },
 };
 
 class BookShelf extends React.Component {
@@ -33,7 +42,9 @@ class BookShelf extends React.Component {
     return (
       <section className="section bookshelf">
         <div className="container">
-          <h1 className="title bookshelf-title">{shelfType[type]}</h1>
+          <h1 className="title bookshelf-title" style={{
+              backgroundColor: shelfType[type].color
+          }}>{shelfType[type].title}</h1>
           <div className="columns is-mobile is-multiline is-centered">
             {books.map(book => (
               <Book

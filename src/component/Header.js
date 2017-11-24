@@ -1,13 +1,9 @@
 import React from 'react';
 
 const Header = () => (
-  <section className="hero is-dark">
-    <div className="hero-body">
-      <div className="container">
-        <h1 className="title has-text-centered">My Reads</h1>
-      </div>
-    </div>
-  </section>
+  <div className="list-books-title">
+    <h1 className="is-size-3 has-text-white">My Reads</h1>
+  </div>
 );
 
 export default Header;
