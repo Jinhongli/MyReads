@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import BookControl from './BookControl';
+
 class Book extends React.Component {
   static propTypes = {
     info: PropTypes.shape({
@@ -19,17 +21,7 @@ class Book extends React.Component {
       <div className="book column is-narrow">
         <div className="book-top">
           <div className="book-cover" style={bookCoverUrl} />
-          <div className="book-shelf-changer">
-            <select>
-              <option value="none" disabled>
-                Move to...
-              </option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <BookControl />
         </div>
         <div className="book-title">{name}</div>
         <div className="book-authors">{authors.join(', ')}</div>
