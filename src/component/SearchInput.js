@@ -26,7 +26,7 @@ class SearchInput extends React.Component {
           />
         </div>
         <div className="control">
-          <Link className="button is-success" to="/search">
+          <Link className="button is-success" to={'/search?keywords=' + this.state.value}>
             <i className="fa fa-search" />
           </Link>
         </div>
