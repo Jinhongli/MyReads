@@ -12,26 +12,12 @@ class Book extends React.Component {
     }).isRequired,
   };
 
-  state = {
-    showControl: false,
-  };
-
-  handleHover() {
-    this.setState(prevState => {
-      return {
-        showControl: !prevState.showControl,
-      };
-    });
-  }
-
   render() {
     const { info: { name, authors, cover }, color } = this.props;
     return (
       <div className="column">
         <div
           className="card book"
-          onMouseEnter={() => this.handleHover()}
-          onMouseOut={() => this.handleHover()}
         >
           <div className="card-image">
             <figure className="image">
@@ -47,7 +33,7 @@ class Book extends React.Component {
               </span>
             </div>
           </div>
-          {this.state.showControl && <BookControl color={color} />}
+          <BookControl color={color} />
         </div>
       </div>
     );
