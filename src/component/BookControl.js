@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class BookControl extends React.Component {
+  static propTypes = {
+    color: PropTypes.string.isRequired
+  }
   render() {
+    const { color } = this.props;
     return (
-      <div className="book-shelf-changer">
+      <div className="book-shelf-changer" style={{backgroundColor: color}}>
         <select>
           <option value="none" disabled>
             Move to...

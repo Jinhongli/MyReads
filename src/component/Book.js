@@ -13,7 +13,7 @@ class Book extends React.Component {
   };
 
   render() {
-    const { name, authors, cover } = this.props.info;
+    const { info: {name, authors, cover}, color } = this.props;
     const bookCoverUrl = {
       backgroundImage: `url(${cover || ''})`,
     };
@@ -21,7 +21,7 @@ class Book extends React.Component {
       <div className="book column is-narrow">
         <div className="book-top">
           <div className="book-cover" style={bookCoverUrl} />
-          <BookControl />
+          <BookControl color={color} />
         </div>
         <div className="book-title">{name}</div>
         <div className="book-authors">{authors.join(', ')}</div>

@@ -52,6 +52,7 @@ class BookShelf extends React.Component {
                   .toString(32)
                   .substr(-8)}
                 info={book}
+                color={shelfType[type].color}
               />
             ))}
           </div>
