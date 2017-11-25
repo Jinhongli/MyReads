@@ -1,7 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class SearchInput extends React.Component {
+  static propTypes ={
+    onSearch: PropTypes.func.isRequired
+  }
   state = {
     value: '',
   };
@@ -9,6 +12,11 @@ class SearchInput extends React.Component {
     this.setState({
       value: e.target.value,
     });
+  }
+  handleKeyDown(e) {
+    if (e.keyCode === 13) {
+      this.props.onSearch(this.state.value);
+    }
   }
   render() {
     return (
@@ -20,15 +28,13 @@ class SearchInput extends React.Component {
             placeholder="Add a book"
             value={this.state.value}
             onChange={e => this.handleInput(e)}
+            onKeyDown={(e) => this.handleKeyDown(e)}
           />
         </div>
         <div className="control">
-          <Link
-            className="button is-success"
-            to={this.state.value ? '/search?keywords=' + this.state.value : '/'}
-          >
+          <button className="button is-success" onClick={() => this.props.onSearch(this.state.value)} >
             <i className="fa fa-search" />
-          </Link>
+          </button>
         </div>
       </div>
     );

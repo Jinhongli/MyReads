@@ -14,11 +14,11 @@ function parseSarch(search){
 
 class SearchResult extends React.Component {
   render() {
-    const searchKey = parseSarch(this.props.location.search).keywords;
+    const searchKey = parseSarch(this.props.location.search).keyword;
     return (
       <section className="section">
         <div className="container">
-          <h1 className="title"> Result of {searchKey}</h1>
+          <h2 className="subtitle"> Result of {searchKey}:</h2>
           <div className="columns is-mobile is-multiline is-centered">
             <Book
               key={Math.random()
