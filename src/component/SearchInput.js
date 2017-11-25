@@ -1,6 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SearchInput extends React.Component {
+  state = {
+    value: '',
+  };
+  handleInput(e) {
+    this.setState({
+      value: e.target.value,
+    });
+  }
+  handleSubmit() {
+    console.log('search ' + this.state.value);
+  }
   render() {
     return (
       <div className="field has-addons">
@@ -9,12 +21,14 @@ class SearchInput extends React.Component {
             className="input"
             type="text"
             placeholder="Add a book"
+            value={this.state.value}
+            onChange={e => this.handleInput(e)}
           />
         </div>
         <div className="control">
-          <a className="button is-success">
-            <i className="fa fa-search"></i>
-          </a>
+          <Link className="button is-success" to="/search">
+            <i className="fa fa-search" />
+          </Link>
         </div>
       </div>
     );
