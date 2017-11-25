@@ -18,13 +18,15 @@ class Book extends React.Component {
       backgroundImage: `url(${cover || ''})`,
     };
     return (
-      <div className="book column is-narrow">
+      <div className="column">
+      <div className="book">
         <div className="book-top">
           <div className="book-cover" style={bookCoverUrl} />
           <BookControl color={color} />
         </div>
         <div className="book-title">{name}</div>
         <div className="book-authors">{authors.join(', ')}</div>
+      </div>
       </div>
     );
   }

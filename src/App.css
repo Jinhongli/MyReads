@@ -11,8 +11,14 @@ body, .app {
 /* main page */
 
 .list-books-title {
-  padding: 1rem 0;
+  padding: 1rem;
   background: #4a4a4a;
+}
+@media screen and (max-width: 780px){
+  .list-books-title {
+    padding: 1rem 3rem;
+    text-align: center;
+  }
 }
 
 .list-books-content {
@@ -116,6 +122,7 @@ body, .app {
 
 .book {
   width: 140px;
+  margin: 0 auto;
 }
 .book-title,
 .book-authors {

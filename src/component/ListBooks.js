@@ -7,9 +7,9 @@ class ListBooks extends React.Component {
     return (
       <div className="list-books">
         <div className="list-books-content">
-          <BookShelf type={1} number={2} />
-          <BookShelf type={2} number={2} />
-          <BookShelf type={3} number={2} />
+          <BookShelf type={1} />
+          <BookShelf type={2} />
+          <BookShelf type={3} />
         </div>
       </div>
     );

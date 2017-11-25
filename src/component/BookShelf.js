@@ -21,10 +21,9 @@ const shelfType = {
 class BookShelf extends React.Component {
   static propTypes = {
     type: PropTypes.number.isRequired,
-    number: PropTypes.number.isRequired,
   };
   render() {
-    const { type, number } = this.props;
+    const { type } = this.props;
     const books = [
       {
         name: 'To Kill a Mockingbird',
@@ -37,8 +36,23 @@ class BookShelf extends React.Component {
         authors: ['Harper Lee'],
         cover:
           'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
+      },{
+        name: 'To Kill a Mockingbird',
+        authors: ['Harper Lee'],
+        cover:
+          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
+      },{
+        name: 'To Kill a Mockingbird',
+        authors: ['Harper Lee'],
+        cover:
+          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
+      },{
+        name: 'To Kill a Mockingbird',
+        authors: ['Harper Lee'],
+        cover:
+          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
       },
-    ].slice(0, number);
+    ].slice(0, 4);
     return (
       <section className="section bookshelf">
         <div className="container">
