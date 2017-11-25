@@ -121,18 +121,26 @@ body, .app {
 }
 
 .book {
-  width: 140px;
+  position: relative;
+  top: 0;  
+  width: 128px;
   margin: 0 auto;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 2px 2px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.1s;
 }
-.book-title,
-.book-authors {
-  font-size: 0.8em;
+
+.book:hover {
+  top: -3px;
+  box-shadow: 0 0 7px 7px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  
 }
-.book-title {
-  margin-top: 10px;
+
+.book img {
+  border-radius: 0.6rem 0.6rem 0 0;
 }
-.book-authors {
-  color: #999;
+.card-content {
+  padding: 0.2rem;
 }
 
 .book-top {
