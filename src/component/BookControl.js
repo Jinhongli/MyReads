@@ -8,7 +8,7 @@ class BookControl extends React.Component {
   render() {
     const { color } = this.props;
     return (
-      <div className="book-shelf-changer" style={{backgroundColor: color}}>
+      <div className="book-shelf-changer fa fa-caret-down" style={{backgroundColor: color}}>
         <select>
           <option value="none" disabled>
             Move to...
