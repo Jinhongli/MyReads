@@ -42,7 +42,7 @@ class BookShelf extends React.Component {
     return (
       <section className="section bookshelf">
         <div className="container">
-          <h1 className="title bookshelf-title is-size-5" style={{
+          <h1 className="title bookshelf-title is-size-4" style={{
               backgroundColor: shelfType[type].color
           }}>{shelfType[type].title}</h1>
           <div className="columns is-mobile is-multiline is-centered">
