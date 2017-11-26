@@ -13,12 +13,14 @@ class Book extends React.Component {
   };
 
   render() {
-    const { info: { name, authors, cover }, color } = this.props;
+    const {
+      info: { name, authors, cover, showMenu, id },
+      color,
+      toggleBookMenu,
+    } = this.props;
     return (
       <div className="column">
-        <div
-          className="card book"
-        >
+        <div className="card book">
           <div className="card-image">
             <figure className="image">
               <img src={cover} alt={name} />
@@ -33,7 +35,11 @@ class Book extends React.Component {
               </span>
             </div>
           </div>
-          <BookControl color={color} />
+          <BookControl
+            color={color}
+            showMenu={showMenu}
+            toggleBookMenu={() => toggleBookMenu(id)}
+          />
         </div>
       </div>
     );

@@ -5,28 +5,14 @@ class BookControl extends React.Component {
   static propTypes = {
     color: PropTypes.string.isRequired,
   };
-  state = {
-    showMenu: false,
-  };
 
   onDropdownClick(e) {
-    this.setState(prevState => {
-      return {
-        showMenu: !prevState.showMenu,
-      };
-    });
+    e.stopPropagation();
+    this.props.toggleBookMenu(this.props.id);
   }
-  onDropdownBlur(e) {
-    if (e.currentTarget === this.refs.controlBtn) {
-      return false;
-    }
-    this.setState({
-      showMenu: false
-    });
-  }
-
-  onDropdownItemClick(to) {
-    console.log(to)
+  onDropdownItemClick(e, to) {
+    e.preventDefault();
+    console.log(`change book type to ${to}`);
   }
 
   render() {
@@ -34,14 +20,16 @@ class BookControl extends React.Component {
     return (
       <div
         className={
-          'dropdown book-control' + (this.state.showMenu ? ' is-active' : '')
+          'dropdown book-control' + (this.props.showMenu ? ' is-active' : '')
         }
-        onClick={(e) => this.onDropdownClick(e)}
-        onBlur={(e) => this.onDropdownBlur(e)}
-        ref="controlBtn"
       >
         <div className="dropdown-trigger">
-          <button className="button" style={{ backgroundColor: color }}>
+          <button
+            className="button"
+            style={{ backgroundColor: color }}
+            onClick={e => this.onDropdownClick(e)}
+            ref="controlBtn"
+          >
             <span className="icon">
               <i className="fa fa-bars" />
             </span>
@@ -53,19 +41,19 @@ class BookControl extends React.Component {
             <a className="dropdown-item has-text-grey-light">Move to...</a>
             <a
               className="dropdown-item"
-              onClick={() => this.onDropdownItemClick(1)}
+              onClick={e => this.onDropdownItemClick(e, 1)}
             >
               Currently Reading
             </a>
             <a
               className="dropdown-item"
-              onClick={() => this.onDropdownItemClick(2)}
+              onClick={e => this.onDropdownItemClick(e, 2)}
             >
               Want to Read
             </a>
             <a
               className="dropdown-item"
-              onClick={() => this.onDropdownItemClick(3)}
+              onClick={e => this.onDropdownItemClick(e, 3)}
             >
               Read
             </a>
