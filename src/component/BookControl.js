@@ -25,8 +25,7 @@ class BookControl extends React.Component {
       >
         <div className="dropdown-trigger">
           <button
-            className="button"
-            style={{ backgroundColor: color }}
+            className={'button ' + color }
             onClick={e => this.onDropdownClick(e)}
             ref="controlBtn"
           >
@@ -38,7 +37,7 @@ class BookControl extends React.Component {
 
         <div className="dropdown-menu">
           <div className="dropdown-content">
-            <a className="dropdown-item has-text-grey-light">Move to...</a>
+            <a className="dropdown-item has-text-grey-light disabled">Move to...</a>
             <a
               className="dropdown-item"
               onClick={e => this.onDropdownItemClick(e, 1)}

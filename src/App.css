@@ -8,11 +8,36 @@ body, .app {
   background: white;
 }
 
+.bg-yellow {
+  background-color: #F0D43A;
+}
+
+.bg-blue {
+  background-color: #22B2DA;
+}
+.bg-green {
+  background-color: #40A798;
+}
+
+.bg-rice {
+  background-color: #DFE0D4;
+}
+
+.bg-black {
+  background-color: #4a4a4a;
+}
+
+.bg-red {
+  background-color: #F23557;
+}
+
+
 /* main page */
 
 .list-books-title {
   padding: 1rem;
   background: #4a4a4a;
+  border-radius: 0.3rem;
 }
 @media screen and (max-width: 780px){
   .list-books-title {
@@ -37,8 +62,7 @@ body, .app {
 
 .bookshelf-title {
   padding: 0.5rem 0 0.5rem 3rem;
-  border-radius: 1.5rem 1.5rem 0 0;
-  box-shadow: 0.1rem 0.1rem 0.5rem #4a4a4a;
+  border-radius: 1.5rem 0.5rem 0.5rem 1.5rem;
 }
 .bookshelf-books {
   text-align: center;
@@ -62,10 +86,10 @@ body, .app {
 /* books card */
 
 .book {
-  padding: 0.1rem;
+  padding: 10px;
   position: relative;
   top: 0;  
-  width: 128px;
+  width: 148px;
   margin: 0 auto;
   border-radius: 0.6rem;
   box-shadow: 0 0 2px 2px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -80,9 +104,10 @@ body, .app {
 }
 
 .book img {
+  margin: 0 auto;
   width: 128px;
   height: 193px;
-  border-radius: 0.6rem 0.6rem 0 0;
+  border-radius: 0.6rem;
   background-color: #eee;
 }
 .card-content {
@@ -104,6 +129,12 @@ body, .app {
   color: #fff;
   border-color: #dbdbdb;
 }
-.dropdown-content a:first-child {
+.dropdown-content .dropdown-item:first-child {
   border-bottom: 1px solid #dbdbdb;
+}
+.dropdown-item.disabled {
+  cursor: default;
+}
+.dropdown-item.disabled:hover {
+  background-color: #ffffff;
 }

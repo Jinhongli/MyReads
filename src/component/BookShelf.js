@@ -6,15 +6,15 @@ import Book from './Book';
 const shelfType = {
   1: {
     title: 'Currently Reading',
-    color: '#209cee',
+    color: 'bg-red',
   },
   2: {
     title: 'Want to Read',
-    color: '#60d160',
+    color: 'bg-yellow',
   },
   3: {
     title: 'Read',
-    color: '#f9dd56',
+    color: 'bg-blue',
   },
 };
 
@@ -74,7 +74,7 @@ class BookShelf extends React.Component {
       <section className="section bookshelf">
         <div className="container">
           <h1
-            className="title bookshelf-title is-size-4"
+            className={'title bookshelf-title is-size-4 ' + shelfType[type].color }
             style={{
               backgroundColor: shelfType[type].color,
             }}

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchInput extends React.Component {
-  static propTypes ={
-    onSearch: PropTypes.func.isRequired
-  }
+  static propTypes = {
+    onSearch: PropTypes.func.isRequired,
+  };
   state = {
     value: '',
   };
@@ -33,14 +33,20 @@ class SearchInput extends React.Component {
             placeholder="Add a book"
             value={this.state.value}
             onChange={e => this.handleInput(e)}
-            onKeyDown={(e) => this.handleKeyDown(e)}
+            onKeyDown={e => this.handleKeyDown(e)}
           />
-          <span className="icon header-search-clear" onClick={() => this.clearInput()}>
-            <i className="fa fa-times-circle"></i>
+          <span
+            className="icon header-search-clear"
+            onClick={() => this.clearInput()}
+          >
+            <i className="fa fa-times-circle" />
           </span>
         </div>
         <div className="control">
-          <button className="button is-success" onClick={() => this.props.onSearch(this.state.value)} >
+          <button
+            className="button is-success"
+            onClick={() => this.props.onSearch(this.state.value)}
+          >
             <i className="fa fa-search" />
           </button>
         </div>
