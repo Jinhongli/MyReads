@@ -31,7 +31,7 @@ class BookControl extends React.Component {
             ref="controlBtn"
           >
             <span className="icon">
-              <i className="fa fa-bars" />
+              <i className={'fa' + (showMenu ? ' fa-close' : ' fa-bars')} />
             </span>
           </button>
         </div>

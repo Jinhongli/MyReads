@@ -18,10 +18,15 @@ class SearchInput extends React.Component {
       this.props.onSearch(this.state.value);
     }
   }
+  clearInput() {
+    this.setState({
+      value: '',
+    });
+  }
   render() {
     return (
-      <div className="field has-addons">
-        <div className="control">
+      <div className="header-search field has-addons">
+        <div className="control header-search-input">
           <input
             className="input"
             type="text"
@@ -30,6 +35,9 @@ class SearchInput extends React.Component {
             onChange={e => this.handleInput(e)}
             onKeyDown={(e) => this.handleKeyDown(e)}
           />
+          <span className="icon header-search-clear" onClick={() => this.clearInput()}>
+            <i className="fa fa-times-circle"></i>
+          </span>
         </div>
         <div className="control">
           <button className="button is-success" onClick={() => this.props.onSearch(this.state.value)} >
