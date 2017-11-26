@@ -67,9 +67,9 @@ class BookShelf extends React.Component {
     ],
   };
   render() {
-    const { type } = this.props;
+    const { type, books, isUp } = this.props;
     const number = document.body.clientWidth >= 680 ? 4 : 2;
-    const books = this.props.books.slice(0, number);
+    const booksShowInShelf = books.slice(0, number);
     return (
       <section className="section bookshelf">
         <div className="container">
@@ -82,12 +82,14 @@ class BookShelf extends React.Component {
             {shelfType[type].title}
           </h1>
           <div className="columns is-mobile is-multiline is-centered">
-            {books.map(book => (
+            {booksShowInShelf.map((book, index) => (
               <Book
                 key={book.id}
                 info={book}
                 color={shelfType[type].color}
                 toggleBookMenu={id => this.props.toggleBookMenu(id)}
+                isRight={index === booksShowInShelf.length - 1}
+                isUp={isUp}
               />
             ))}
           </div>

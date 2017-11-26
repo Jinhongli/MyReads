@@ -16,11 +16,11 @@ class BookControl extends React.Component {
   }
 
   render() {
-    const { color } = this.props;
+    const { color, showMenu, isRight, isUp } = this.props;
     return (
       <div
         className={
-          'dropdown book-control' + (this.props.showMenu ? ' is-active' : '')
+          'dropdown book-control' + (showMenu ? ' is-active' : '') + (isRight ? ' is-right' : '') + (isUp ? ' is-up' : '')
         }
       >
         <div className="dropdown-trigger">

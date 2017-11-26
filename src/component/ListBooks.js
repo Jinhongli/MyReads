@@ -205,6 +205,7 @@ class ListBooks extends React.Component {
             toggleBookMenu={id => {
               this.toggleBookMenu('read', id);
             }}
+            isUp={true}
           />
         </div>
       </div>

@@ -17,6 +17,8 @@ class Book extends React.Component {
       info: { name, authors, cover, showMenu, id },
       color,
       toggleBookMenu,
+      isRight,
+      isUp
     } = this.props;
     return (
       <div className="column">
@@ -39,6 +41,8 @@ class Book extends React.Component {
             color={color}
             showMenu={showMenu}
             toggleBookMenu={() => toggleBookMenu(id)}
+            isRight={isRight}
+            isUp={isUp}
           />
         </div>
       </div>
