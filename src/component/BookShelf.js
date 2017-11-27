@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 
 const shelfType = {
-  'currentlyReading': {
+  currentlyReading: {
     title: 'Currently Reading',
     color: 'bg-red',
   },
-  'wantToRead': {
+  wantToRead: {
     title: 'Want to Read',
     color: 'bg-yellow',
   },
-  'read': {
+  read: {
     title: 'Read',
     color: 'bg-blue',
   },
@@ -21,60 +21,20 @@ const shelfType = {
 class BookShelf extends React.Component {
   static propTypes = {
     type: PropTypes.string.isRequired,
-  };
-  state = {
-    books: [
-      {
-        id: 1,
-        showMenu: false,
-        name: 'To Kill a Mockingbird',
-        authors: ['Harper Lee'],
-        cover:
-          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
-      },
-      {
-        id: 2,
-        showMenu: false,
-        name: 'To Kill a Mockingbird',
-        authors: ['Harper Lee'],
-        cover:
-          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
-      },
-      {
-        id: 3,
-        showMenu: false,
-        name: 'To Kill a Mockingbird',
-        authors: ['Harper Lee'],
-        cover:
-          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
-      },
-      {
-        id: 4,
-        showMenu: false,
-        name: 'To Kill a Mockingbird',
-        authors: ['Harper Lee'],
-        cover:
-          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
-      },
-      {
-        id: 5,
-        showMenu: false,
-        name: 'To Kill a Mockingbird',
-        authors: ['Harper Lee'],
-        cover:
-          'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api',
-      },
-    ],
+    books: PropTypes.array.isRequired,
+    toggleBookMenu: PropTypes.func.isRequired,
   };
   render() {
-    const { type, books, isUp } = this.props;
+    const { type, books, isUp, toggleBookMenu } = this.props;
     const number = document.body.clientWidth >= 680 ? 4 : 2;
     const booksShowInShelf = books.slice(0, number);
     return (
       <section className="section bookshelf">
         <div className="container">
           <h1
-            className={'title bookshelf-title is-size-4 ' + shelfType[type].color }
+            className={
+              'title bookshelf-title is-size-4 ' + shelfType[type].color
+            }
             style={{
               backgroundColor: shelfType[type].color,
             }}
@@ -87,7 +47,7 @@ class BookShelf extends React.Component {
                 key={book.id}
                 info={book}
                 color={shelfType[type].color}
-                toggleBookMenu={id => this.props.toggleBookMenu(id)}
+                toggleBookMenu={id => toggleBookMenu(id)}
                 isRight={index === booksShowInShelf.length - 1}
                 isUp={isUp}
               />
