@@ -131,79 +131,31 @@ class ListBooks extends React.Component {
       },
     ],
   };
-  onListBooksClick() {
-    this.setState(prevState => {
-      return {
-        current: prevState.current.map(book => {
-          book.showMenu = false;
-          return book;
-        }),
-        want: prevState.want.map(book => {
-          book.showMenu = false;
-          return book;
-        }),
-        read: prevState.read.map(book => {
-          book.showMenu = false;
-          return book;
-        }),
-      };
-    });
-  }
-  toggleBookMenu(type, id) {
-    console.log(`show ${type} book menu, book id: ${id}`);
-    this.setState(prevState => {
-      return {
-        current: prevState.current.map(book => {
-          if (type === 'current' && book.id === id) {
-            book.showMenu = !book.showMenu;
-          } else {
-            book.showMenu = false;
-          }
-          return book;
-        }),
-        want: prevState.want.map(book => {
-          if (type === 'want' && book.id === id) {
-            book.showMenu = !book.showMenu;
-          } else {
-            book.showMenu = false;
-          }
-          return book;
-        }),
-        read: prevState.read.map(book => {
-          if (type === 'read' && book.id === id) {
-            book.showMenu = !book.showMenu;
-          } else {
-            book.showMenu = false;
-          }
-          return book;
-        }),
-      };
-    });
-  }
 
   render() {
+    const {books, toggleBookMenu, onListBooksClick} = this.props;
     return (
-      <div className="list-books" onClick={() => this.onListBooksClick()}>
+      <div className="list-books" onClick={() => onListBooksClick()}>
         <div className="list-books-content">
           <BookShelf
-            type={1}
-            books={this.state.current}
+            type="currentlyReading"
+            books={books.current}
             toggleBookMenu={id => {
-              this.toggleBookMenu('current', id);
+              toggleBookMenu('current', id);
             }}
           />
           <BookShelf
-            type={2}
-            books={this.state.want}
+            type="wantToRead"
+            books={books.want}
             toggleBookMenu={id => {
-              this.toggleBookMenu('want', id);
+              toggleBookMenu('want', id);
             }}
           />
           <BookShelf
-            type={3}
-            books={this.state.read}
+            type="read"
+            books={books.read}
             toggleBookMenu={id => {
-              this.toggleBookMenu('read', id);
+              toggleBookMenu('read', id);
             }}
             isUp={true}
           />

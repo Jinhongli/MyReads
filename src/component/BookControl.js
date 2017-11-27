@@ -10,9 +10,9 @@ class BookControl extends React.Component {
     e.stopPropagation();
     this.props.toggleBookMenu(this.props.id);
   }
-  onDropdownItemClick(e, to) {
+  onDropdownItemClick(e, targetShelf) {
     e.preventDefault();
-    console.log(`change book type to ${to}`);
+    console.log(`change book type to <${targetShelf}>`);
   }
 
   render() {
@@ -40,19 +40,19 @@ class BookControl extends React.Component {
             <a className="dropdown-item has-text-grey-light disabled">Move to...</a>
             <a
               className="dropdown-item"
-              onClick={e => this.onDropdownItemClick(e, 1)}
+              onClick={e => this.onDropdownItemClick(e, 'currentlyReading')}
             >
               Currently Reading
             </a>
             <a
               className="dropdown-item"
-              onClick={e => this.onDropdownItemClick(e, 2)}
+              onClick={e => this.onDropdownItemClick(e, 'wantToRead')}
             >
               Want to Read
             </a>
             <a
               className="dropdown-item"
-              onClick={e => this.onDropdownItemClick(e, 3)}
+              onClick={e => this.onDropdownItemClick(e, 'read')}
             >
               Read
             </a>

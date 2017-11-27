@@ -110,8 +110,13 @@ body, .app {
   border-radius: 0.6rem;
   background-color: #eee;
 }
-.card-content {
+.book .card-content {
   padding: 0.2rem;
+}
+.book .book-title {
+  display: block;
+  height: 40px;
+  overflow: hidden;
 }
 
 .book-control {

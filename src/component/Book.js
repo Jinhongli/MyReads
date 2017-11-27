@@ -6,7 +6,7 @@ import BookControl from './BookControl';
 class Book extends React.Component {
   static propTypes = {
     info: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
       authors: PropTypes.arrayOf(PropTypes.string).isRequired,
       cover: PropTypes.string,
     }).isRequired,
@@ -14,7 +14,7 @@ class Book extends React.Component {
 
   render() {
     const {
-      info: { name, authors, cover, showMenu, id },
+      info: { title, authors, imageLinks, showMenu, id },
       color,
       toggleBookMenu,
       isRight,
@@ -25,15 +25,16 @@ class Book extends React.Component {
         <div className="card book">
           <div className="card-image">
             <figure className="image">
-              <img src={cover} alt={name} />
+              <img src={imageLinks.thumbnail} alt={title} />
             </figure>
           </div>
           <div className="card-content">
             <div className="content">
-              <span className="is-size-7">{name}</span>
-              <br />
-              <span className="is-size-7 has-text-grey-light">
-                {authors.join(', ')}
+              <span className="book-title is-size-7">
+                {title}
+              </span>
+              <span className="book-authors is-size-7 has-text-grey-light">
+                {authors[0]}
               </span>
             </div>
           </div>

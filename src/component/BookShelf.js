@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 
 const shelfType = {
-  1: {
+  'currentlyReading': {
     title: 'Currently Reading',
     color: 'bg-red',
   },
-  2: {
+  'wantToRead': {
     title: 'Want to Read',
     color: 'bg-yellow',
   },
-  3: {
+  'read': {
     title: 'Read',
     color: 'bg-blue',
   },
@@ -20,7 +20,7 @@ const shelfType = {
 
 class BookShelf extends React.Component {
   static propTypes = {
-    type: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
   };
   state = {
     books: [
