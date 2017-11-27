@@ -1,15 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as BooksAPI from '../BooksAPI';
 
 import SearchInput from './SearchInput';
 
 class Header extends React.Component {
   onSearchHandler(history, value) {
-    history.push(value ? ('/search?keyword=' + value) : '/' );
+    history.push(value ? '/search?keyword=' + value : '/');
+    BooksAPI.search(value)
+      .then(books =>
+        books.map(book => {
+          book.showMenu = false;
+          return book;
+        })
+      )
+      .then(books => this.props.onSearchHandler(books));
   }
   render() {
-    const {history} = this.props;
-    
+    const { history } = this.props;
+
     return (
       <nav className="list-books-title">
         <div className="container">
@@ -23,7 +32,9 @@ class Header extends React.Component {
             </div>
             <div className="level-right">
               <div className="level-item">
-                <SearchInput onSearch={(value) => this.onSearchHandler(history, value)} />
+                <SearchInput
+                  onSearch={value => this.onSearchHandler(history, value)}
+                />
               </div>
             </div>
           </div>

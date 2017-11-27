@@ -8,7 +8,6 @@ class Book extends React.Component {
     info: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      authors: PropTypes.arrayOf(PropTypes.string).isRequired,
       imageLinks: PropTypes.object.isRequired,
     }).isRequired,
     color: PropTypes.string.isRequired,
@@ -35,7 +34,7 @@ class Book extends React.Component {
             <div className="content">
               <span className="book-title is-size-7">{title}</span>
               <span className="book-authors is-size-7 has-text-grey-light">
-                {authors[0]}
+                {authors && authors[0]}
               </span>
             </div>
           </div>

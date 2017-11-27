@@ -13,7 +13,9 @@ class BooksApp extends React.Component {
       current: [],
       want: [],
       read: [],
+      none: []
     },
+    searchResultBooks: [],
   };
   componentDidMount() {
     BooksAPI.getAll()
@@ -27,6 +29,7 @@ class BooksApp extends React.Component {
         const current = books.filter(book => book.shelf === 'currentlyReading');
         const want = books.filter(book => book.shelf === 'wantToRead');
         const read = books.filter(book => book.shelf === 'read');
+        // const none = books.filter(book => book.shelf === 'none');
         this.setState({
           books: {
             current,
@@ -57,39 +60,70 @@ class BooksApp extends React.Component {
 
   toggleBookMenu(type, id) {
     console.log(`show/hide ${type} book menu, book id: ${id}`);
+    
+    if (type === 'search') {
+      this.setState(prevState => {
+        return {
+          searchResultBooks: prevState.searchResultBooks.map(book => {
+            if (book.id === id) {
+              book.showMenu = !book.showMenu;
+            } else {
+              book.showMenu = false;
+            }
+            return book;
+          })
+        }
+      })
+    }
     this.setState(prevState => {
       return {
-        current: prevState.books.current.map(book => {
-          if (type === 'current' && book.id === id) {
-            book.showMenu = !book.showMenu;
-          } else {
-            book.showMenu = false;
-          }
-          return book;
-        }),
-        want: prevState.books.want.map(book => {
-          if (type === 'want' && book.id === id) {
-            book.showMenu = !book.showMenu;
-          } else {
-            book.showMenu = false;
-          }
-          return book;
-        }),
-        read: prevState.books.read.map(book => {
-          if (type === 'read' && book.id === id) {
-            book.showMenu = !book.showMenu;
-          } else {
-            book.showMenu = false;
-          }
-          return book;
-        }),
+        books: {
+          current: prevState.books.current.map(book => {
+            if (type === 'current' && book.id === id) {
+              book.showMenu = !book.showMenu;
+            } else {
+              book.showMenu = false;
+            }
+            return book;
+          }),
+          want: prevState.books.want.map(book => {
+            if (type === 'want' && book.id === id) {
+              book.showMenu = !book.showMenu;
+            } else {
+              book.showMenu = false;
+            }
+            return book;
+          }),
+          read: prevState.books.read.map(book => {
+            if (type === 'read' && book.id === id) {
+              book.showMenu = !book.showMenu;
+            } else {
+              book.showMenu = false;
+            }
+            return book;
+          }),
+        }
       };
+    });
+  }
+  onSearchHandler(books) {
+    console.log(books);
+    this.setState({
+      searchResultBooks: books,
     });
   }
   render() {
     return (
       <div className="app">
-        <Route path="/" component={Header} />
+        <Route
+          path="/"
+          render={props => (
+            <Header
+              {...props}
+              onSearchHandler={books => this.onSearchHandler(books)}
+            />
+          )}
+        />
         <Route
           exact
           path="/"
@@ -102,7 +136,16 @@ class BooksApp extends React.Component {
             />
           )}
         />
-        <Route path="/search" component={SearchResult} />
+        <Route
+          path="/search"
+          render={props => (
+            <SearchResult
+              {...props}
+              books={this.state.searchResultBooks}
+              toggleBookMenu={(type, id) => this.toggleBookMenu(type, id)}
+            />
+          )}
+        />
       </div>
     );
   }
