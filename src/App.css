@@ -137,6 +137,12 @@ body, .app {
 .dropdown-content .dropdown-item:first-child {
   border-bottom: 1px solid #dbdbdb;
 }
+.dropdown-menu {
+  min-width: 0; 
+}
+a.dropdown-item {
+  padding-right: 1rem;
+}
 .dropdown-item.disabled {
   cursor: default;
 }

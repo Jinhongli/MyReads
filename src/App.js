@@ -29,7 +29,6 @@ class BooksApp extends React.Component {
         const current = books.filter(book => book.shelf === 'currentlyReading');
         const want = books.filter(book => book.shelf === 'wantToRead');
         const read = books.filter(book => book.shelf === 'read');
-        // const none = books.filter(book => book.shelf === 'none');
         this.setState({
           books: {
             current,
@@ -107,7 +106,6 @@ class BooksApp extends React.Component {
     });
   }
   onSearchHandler(books) {
-    console.log(books);
     this.setState({
       searchResultBooks: books,
     });

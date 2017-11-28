@@ -13,18 +13,29 @@ class Book extends React.Component {
     color: PropTypes.string.isRequired,
     toggleBookMenu: PropTypes.func.isRequired,
   };
+  state = {
+    isRight: false,
+    isUp: false
+  }
+  componentDidMount() {
+    const appWidth = document.getElementById('root').getBoundingClientRect().width;
+    const appHeight = document.getElementById('root').getBoundingClientRect().height;
+    const bookCardRect = this.refs.bookCard.getBoundingClientRect()
+    this.setState({
+      isRight: appWidth - bookCardRect.left < 2 * bookCardRect.width,
+      isUp: appHeight - bookCardRect.bottom < bookCardRect.height,
+    })
+  }
 
   render() {
     const {
       info: { title, authors, imageLinks, showMenu, id },
       color,
       toggleBookMenu,
-      isRight,
-      isUp,
     } = this.props;
     return (
       <div className="column">
-        <div className="card book">
+        <div className="card book" ref="bookCard">
           <div className="card-image">
             <figure className="image">
               <img src={imageLinks.thumbnail} alt={title} />
@@ -42,8 +53,8 @@ class Book extends React.Component {
             color={color}
             showMenu={showMenu}
             toggleBookMenu={() => toggleBookMenu(id)}
-            isRight={isRight}
-            isUp={isUp}
+            isRight={this.state.isRight}
+            isUp={this.state.isUp}
           />
         </div>
       </div>

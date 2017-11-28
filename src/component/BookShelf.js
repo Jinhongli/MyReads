@@ -25,8 +25,9 @@ class BookShelf extends React.Component {
     toggleBookMenu: PropTypes.func.isRequired,
   };
   render() {
-    const { type, books, isUp, toggleBookMenu } = this.props;
-    const number = document.body.clientWidth >= 680 ? 4 : 2;
+    const { type, books, toggleBookMenu } = this.props;
+    const appWidth = document.getElementById('root').getBoundingClientRect().width;
+    const number = appWidth >= 680 ? 4 : 2;
     const booksShowInShelf = books.slice(0, number);
     return (
       <section className="section bookshelf">
@@ -48,8 +49,6 @@ class BookShelf extends React.Component {
                 info={book}
                 color={shelfType[type].color}
                 toggleBookMenu={id => toggleBookMenu(id)}
-                isRight={index === booksShowInShelf.length - 1}
-                isUp={isUp}
               />
             ))}
           </div>
