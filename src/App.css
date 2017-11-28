@@ -149,3 +149,10 @@ a.dropdown-item {
 .dropdown-item.disabled:hover {
   background-color: #ffffff;
 }
+@keyframes load {
+  0% { transform: rotate(0deg); }
+  25%   { transform: scaleX(90deg); }
+}
+.loading {
+  transform: scaleX(90deg);
+}

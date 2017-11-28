@@ -7,17 +7,19 @@ import SearchInput from './SearchInput';
 class Header extends React.Component {
   onSearchHandler(history, value) {
     history.push(value ? '/search?keyword=' + value : '/');
-    BooksAPI.search(value, 5)
-      .then(books => 
-        books.map(book => {
+    BooksAPI.search(value)
+      .then(books => {
+        console.log(books)
+        return books.error ? books.error : books.map(book => {
           book.showMenu = false;
           return book;
         })
+      }
       )
       .then(books => {
         console.log(books)
         return this.props.onSearchHandler(books)
-      }, err => {console.log(err);this.props.onSearchHandler([])});
+      });
   }
   render() {
     const { history } = this.props;
