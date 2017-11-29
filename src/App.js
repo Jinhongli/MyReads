@@ -6,6 +6,7 @@ import './App.css';
 import Header from './component/Header';
 import ListBooks from './component/ListBooks';
 import SearchResult from './component/SearchResult';
+import SearchLoading from './component/SearchLoading';
 
 class BooksApp extends React.Component {
   state = {
@@ -13,9 +14,10 @@ class BooksApp extends React.Component {
       current: [],
       want: [],
       read: [],
-      none: []
+      none: [],
     },
     searchResultBooks: [],
+    isLoading: false,
   };
   componentDidMount() {
     BooksAPI.getAll()
@@ -59,7 +61,7 @@ class BooksApp extends React.Component {
 
   toggleBookMenu(type, id) {
     console.log(`show/hide ${type} book menu, book id: ${id}`);
-    
+
     if (type === 'search') {
       this.setState(prevState => {
         return {
@@ -70,9 +72,9 @@ class BooksApp extends React.Component {
               book.showMenu = false;
             }
             return book;
-          })
-        }
-      })
+          }),
+        };
+      });
     }
     this.setState(prevState => {
       return {
@@ -101,13 +103,19 @@ class BooksApp extends React.Component {
             }
             return book;
           }),
-        }
+        },
       };
     });
   }
   onSearchHandler(books) {
     this.setState({
       searchResultBooks: books,
+      isLoading: false,
+    });
+  }
+  startLoading() {
+    this.setState({
+      isLoading: true,
     });
   }
   render() {
@@ -119,6 +127,7 @@ class BooksApp extends React.Component {
             <Header
               {...props}
               onSearchHandler={books => this.onSearchHandler(books)}
+              startLoading={() => this.startLoading()}
             />
           )}
         />
@@ -136,13 +145,17 @@ class BooksApp extends React.Component {
         />
         <Route
           path="/search"
-          render={props => (
-            <SearchResult
-              {...props}
-              books={this.state.searchResultBooks}
-              toggleBookMenu={(type, id) => this.toggleBookMenu(type, id)}
-            />
-          )}
+          render={props =>
+            this.state.isLoading ? (
+              <SearchLoading />
+            ) : (
+              <SearchResult
+                {...props}
+                books={this.state.searchResultBooks}
+                toggleBookMenu={(type, id) => this.toggleBookMenu(type, id)}
+              />
+            )
+          }
         />
       </div>
     );

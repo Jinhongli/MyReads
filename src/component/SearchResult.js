@@ -16,23 +16,30 @@ class SearchResult extends React.Component {
   render() {
     const { books, toggleBookMenu } = this.props;
     const searchKey = parseSarch(this.props.location.search).keyword;
-    const loading = <span className="fa fa-spinner fa-spin fa-3x fa-fw"></span>;
+    const title = books.length ? (
+      <h2 className="subtitle">
+        {`Results of "${searchKey}": ${books.length}`}
+      </h2>
+    ) : (
+      <h2 className="subtitle">
+        <span>
+          No Result <i class="fa fa-frown-o" />
+        </span>
+      </h2>
+    );
     return (
       <section className="section">
-        <div className="container">  
+        <div className="container">
+          {title}
           <div className="columns is-mobile is-multiline is-centered">
-            {typeof books === 'string' ? (<h2 className="subtitle">No Result</h2>) : (
-              books.length ? (
-                books.map((book, index) => (
-                <Book
-                  key={book.id}
-                  info={book}
-                  color="bg-red"
-                  toggleBookMenu={id => toggleBookMenu('search', id)}
-                />
-              ))
-            ) : loading
-            )}
+            {books.map((book, index) => (
+              <Book
+                key={book.id}
+                info={book}
+                color="bg-red"
+                toggleBookMenu={id => toggleBookMenu('search', id)}
+              />
+            ))}
           </div>
         </div>
       </section>
